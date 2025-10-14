@@ -13,3 +13,5 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 open = "3.2.0"
+dirs = "5.0"
+url = "2.5.7"
