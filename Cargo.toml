@@ -1,12 +1,12 @@
 [package]
-name = "GITREMOTE"
+name = "git-sg"
 version = "0.1.1"
-edition = "2021"
+edition = "2024"
 license = "MIT"
-description = "tool for opening the current git repository from a local git directory"
+description = "Tool for opening the current git repository in Sourcegraph"
 readme = "README.md"
-homepage = "https://github.com/Niraj-Fonseka/gitremote"
-repository = "https://github.com/Niraj-Fonseka/gitremote"
+homepage = "https://github.com/Niraj-Fonseka/git-sg"
+repository = "https://github.com/Niraj-Fonseka/git-sg"
 keywords = ["cli", "web", "git"]
 categories = ["command-line-utilities"]
 

@@ -20,15 +20,17 @@
 1. Navigate to any Git repository.
 2. Run the following command:
    ```
-   gitsg
+   git-sg
    ```
 3. On the first run, you will be prompted to enter the base URL for your Sourcegraph instance. This will be saved for future use.
 
 ### Configuration File
-The configuration file is stored in the appropriate location based on your operating system:
+The configuration file is stored in the appropriate location based on your operating system: 
 - macOS: `~/Library/Application Support/gitsg/config`
 - Linux: `~/.config/gitsg/config`
 - Windows: `%APPDATA%\gitsg\config`
+
+The configuration file contains the base URL for your Sourcegraph instance. If you need to change it, simply edit the file.
 
 ### Requirements
 - Rust installed on your system.
