@@ -13,7 +13,7 @@
 - If you have Rust/Cargo installed, you can install `git-sg` using Cargo:
 
    ```bash
-   cargo install git-sg
+   cargo install --git https://github.com/Niraj-Fonseka/git-sg
    ```
 
 ### Build from source
