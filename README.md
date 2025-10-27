@@ -10,6 +10,13 @@
 - Automatically strips `https://`, `http://`, and trailing slashes from the git provider URL.
 
 ### Installation
+- If you have Rust/Cargo installed, you can install `git-sg` using Cargo:
+
+   ```bash
+   cargo install git-sg
+   ```
+
+### Build from source
 
 1. Clone this repository.
 2. Build the binary using the following command:
