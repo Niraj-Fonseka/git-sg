@@ -92,8 +92,8 @@ fn get_git_origin_url() -> String {
 }
 
 fn parse_git_url(git_url: &str) -> String {
-    println!("Parsing Git URL: {}", git_url);
 
+    // Handle different Git URL formats ssh or https
     if git_url.starts_with("git@") {
         // Handle SSH URL
         let parts: Vec<&str> = git_url.split(':').collect();
@@ -150,18 +150,18 @@ fn prompt_for_config(config_path: &PathBuf) -> (String, String) {
     io::stdin().read_line(&mut provider_input).expect("Failed to read input");
     let mut git_provider_url = provider_input.trim().to_string();
     
-    // Remove https:// prefix if present
+    // ------------ Git provider URL cleaning ------------
+    // Remove https:// prefix if present from the git provider URL
     if git_provider_url.starts_with("https://") {
         git_provider_url = git_provider_url.trim_start_matches("https://").to_string();
     }
-    
-    // Remove http:// prefix if present
+    // Remove http:// prefix if present from the git provider URL
     if git_provider_url.starts_with("http://") {
         git_provider_url = git_provider_url.trim_start_matches("http://").to_string();
     }
-    
     // Remove trailing slashes
     git_provider_url = git_provider_url.trim_end_matches('/').to_string();
+
 
     // Save the configuration to the configuration file
     let config_content = format!("{}\n{}", base_url, git_provider_url);
