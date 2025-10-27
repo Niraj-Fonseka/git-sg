@@ -44,7 +44,7 @@
 
 
 3. On the first run, you will be prompted to enter:
-   - The base URL for your Sourcegraph instance (e.g., `https://heb.sourcegraph.com`)
+   - The base URL for your Sourcegraph instance (e.g., `https://company_name.sourcegraph.com`)
    - The git provider URL (e.g., `gitlab.com`)
 
    These will be saved for future use.
