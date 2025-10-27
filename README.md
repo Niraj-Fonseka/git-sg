@@ -28,13 +28,20 @@
 3. Add the binary to your PATH for easy access.
 
 ### Usage
+- After installation, navigate to any Git repository.
 
-1. Navigate to any Git repository.
-2. Run the following command:
+   1. (Recommended) As long as your binary is in a location included in your system's PATH, you can also run:
+
+   ```bash
+   git sg 
+   ```
+
+   2. Or you can execute the application by using the fully binary name.
 
    ```bash
    git-sg
    ```
+
 
 3. On the first run, you will be prompted to enter:
    - The base URL for your Sourcegraph instance (e.g., `https://heb.sourcegraph.com`)
