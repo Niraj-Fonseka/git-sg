@@ -10,6 +10,13 @@
 - Automatically strips `https://`, `http://`, and trailing slashes from the git provider URL.
 
 ### Installation
+- If you have Rust/Cargo installed, you can install `git-sg` using Cargo:
+
+   ```bash
+   cargo install --git https://github.com/Niraj-Fonseka/git-sg
+   ```
+
+### Build from source
 
 1. Clone this repository.
 2. Build the binary using the following command:
@@ -21,16 +28,23 @@
 3. Add the binary to your PATH for easy access.
 
 ### Usage
+- After installation, go into to any Git repository in your local filesystem.
 
-1. Navigate to any Git repository.
-2. Run the following command:
+   1. (Recommended) As long as your binary is in a location included in your system's PATH, you can also run:
 
    ```bash
-   git-sg
+   git sg 
    ```
 
+   2. Or you can execute the application by using the full binary name.
+
+   ```bash
+   ./git-sg
+   ```
+
+
 3. On the first run, you will be prompted to enter:
-   - The base URL for your Sourcegraph instance (e.g., `https://heb.sourcegraph.com`)
+   - The base URL for your Sourcegraph instance (e.g., `https://company_name.sourcegraph.com`)
    - The git provider URL (e.g., `gitlab.com`)
 
    These will be saved for future use.
