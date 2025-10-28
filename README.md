@@ -28,7 +28,7 @@
 3. Add the binary to your PATH for easy access.
 
 ### Usage
-- After installation, navigate to any Git repository.
+- After installation, go into to any Git repository in your local filesystem.
 
    1. (Recommended) As long as your binary is in a location included in your system's PATH, you can also run:
 
@@ -36,10 +36,10 @@
    git sg 
    ```
 
-   2. Or you can execute the application by using the fully binary name.
+   2. Or you can execute the application by using the full binary name.
 
    ```bash
-   git-sg
+   ./git-sg
    ```
 
 
