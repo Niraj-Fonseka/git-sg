@@ -1,11 +1,12 @@
+// git-sg: A tool to open the Sourcegraph page for any local Git repository
+// Enhanced URL parsing ensures proper validation and normalization of user input
+
 use std::fs;
-use std::io;
-use std::path::PathBuf;
-use url::Url;
 use std::process::Command;
 use open;
-use dirs;
 use std::env;
+use url::Url;
+use git_sg::{get_config_path, parse_config, prompt_for_config};
 
 fn main() {
     // Check for command-line arguments
@@ -56,28 +57,6 @@ fn main() {
     open::that(sourcegraph_url).expect("Failed to open URL in browser");
 }
 
-fn get_config_path() -> PathBuf {
-    let app_name = "gitsg";
-    if cfg!(target_os = "macos") {
-        dirs::home_dir()
-            .expect("Failed to get home directory")
-            .join("Library")
-            .join("Application Support")
-            .join(app_name)
-            .join("config")
-    } else if cfg!(target_os = "windows") {
-        dirs::config_dir()
-            .expect("Failed to get config directory")
-            .join(app_name)
-            .join("config")
-    } else {
-        dirs::config_dir()
-            .expect("Failed to get config directory")
-            .join(app_name)
-            .join("config")
-    }
-}
-
 fn get_git_origin_url() -> String {
     let output = Command::new("git")
         .args(["config", "--get", "remote.origin.url"])
@@ -92,7 +71,6 @@ fn get_git_origin_url() -> String {
 }
 
 fn parse_git_url(git_url: &str) -> String {
-
     // Handle different Git URL formats ssh or https
     if git_url.starts_with("git@") {
         // Handle SSH URL
@@ -111,17 +89,6 @@ fn parse_git_url(git_url: &str) -> String {
     }
 }
 
-fn parse_config(config_content: &str) -> (String, String) {
-    let lines: Vec<&str> = config_content.lines().collect();
-    if lines.len() >= 2 {
-        let base_url = lines[0].trim().to_string();
-        let git_provider_url = lines[1].trim().to_string();
-        (base_url, git_provider_url)
-    } else {
-        panic!("Invalid configuration file format. Expected base URL and git provider URL.");
-    }
-}
-
 fn initialize_config() {
     let config_path = get_config_path();
     
@@ -135,37 +102,4 @@ fn initialize_config() {
     println!("Configuration updated successfully!");
     println!("Base URL: {}", base_url);
     println!("Git Provider URL: {}", git_provider_url);
-}
-
-fn prompt_for_config(config_path: &PathBuf) -> (String, String) {
-    // Prompt the user for the base URL
-    println!("Enter the base URL for your Sourcegraph instance:");
-    let mut base_input = String::new();
-    io::stdin().read_line(&mut base_input).expect("Failed to read input");
-    let base_url = base_input.trim().to_string();
-
-    // Prompt the user for the git provider URL
-    println!("Enter the git provider URL (e.g., gitlab.com):");
-    let mut provider_input = String::new();
-    io::stdin().read_line(&mut provider_input).expect("Failed to read input");
-    let mut git_provider_url = provider_input.trim().to_string();
-    
-    // ------------ Git provider URL cleaning ------------
-    // Remove https:// prefix if present from the git provider URL
-    if git_provider_url.starts_with("https://") {
-        git_provider_url = git_provider_url.trim_start_matches("https://").to_string();
-    }
-    // Remove http:// prefix if present from the git provider URL
-    if git_provider_url.starts_with("http://") {
-        git_provider_url = git_provider_url.trim_start_matches("http://").to_string();
-    }
-    // Remove trailing slashes
-    git_provider_url = git_provider_url.trim_end_matches('/').to_string();
-
-
-    // Save the configuration to the configuration file
-    let config_content = format!("{}\n{}", base_url, git_provider_url);
-    fs::write(&config_path, &config_content).expect("Failed to write configuration file");
-
-    (base_url, git_provider_url)
 }
