@@ -17,3 +17,7 @@ run:
 # Clean the build artifacts
 clean:
 	$(CARGO) clean
+
+# Run tests 
+test:
+	$(CARGO) test
