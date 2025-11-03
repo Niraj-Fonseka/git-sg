@@ -1,3 +1,9 @@
+## v0.3.0 (2025-11-03)
+
+### Feat
+
+- handling config view and editor
+
 ## v0.2.1 (2025-10-31)
 
 ### Fix
